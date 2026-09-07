@@ -33,6 +33,9 @@ jobs:
         run: npm ci
 
       - name: Generate static site
+        env:
+          GS_API_KEY: ${{ vars.GS_API_KEY }}
+          GS_ST_CMS_ID: ${{ vars.GS_ST_CMS_ID }}
         run: npm run generate
 
       - name: Configure Pages
