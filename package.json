@@ -15,6 +15,7 @@
     "vue-router": "^5.3.1"
   },
   "devDependencies": {
-    "oxc-parser": "^0.148.0"
+    "oxc-parser": "^0.148.0",
+    "sass": "^1.104.0"
   }
 }

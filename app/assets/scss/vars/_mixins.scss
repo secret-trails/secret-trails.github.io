@@ -1,0 +1,62 @@
+@use 'sass:math';
+
+@mixin fluid-text($max: 48, $min: 16) {
+	$maxViewportWidth: 1440;
+	$minViewportWidth: 360;
+
+	$maxSize: math.div($max, 16);
+	$minSize: math.div($min, 16);
+	$maxWidth: math.div($maxViewportWidth, 16);
+	$minWidth: math.div($minViewportWidth, 16);
+
+	$slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+	$yAxisIntersection: -$minWidth * $slope + $minSize;
+
+	font-size: clamp(
+			#{$minSize * 1rem},
+			#{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+			#{$maxSize * 1rem}
+	);
+}
+
+@function torem($pixel) {
+	@if math.is-unitless($pixel) {
+		@return math.div($pixel, 16) + rem;
+	} @else {
+		@error 'В аргумент torem() необходимо передать только числа';
+	}
+}
+
+@mixin Roboto($weight: 400) {
+	font-family: 'Roboto', sans-serif;
+	font-weight: $weight;
+	font-style: normal;
+}
+
+@mixin RobotoItalic($weight: 400) {
+	font-family: 'Roboto', sans-serif;
+	font-weight: $weight;
+	font-style: italic;
+}
+
+@mixin image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+@mixin skeleton {
+	background: linear-gradient(90deg, #f0ece4 25%, #e8e3d9 50%, #f0ece4 75%);
+	background-size: 200% 100%;
+	animation: skeleton-loading 1.5s infinite;
+
+	@keyframes skeleton-loading {
+		0% {
+			background-position: 200% 0;
+		}
+		100% {
+			background-position: -200% 0;
+		}
+	}
+}

@@ -1,6 +1,14 @@
+<script setup>
+
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+	<div class="app">
+		<!-- прелоадер -->
+
+		<NuxtLayout>
+			<NuxtPage/>
+		</NuxtLayout>
+
+	</div>
 </template>
